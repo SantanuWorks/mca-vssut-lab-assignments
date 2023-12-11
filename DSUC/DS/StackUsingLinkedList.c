@@ -22,9 +22,7 @@ void push(){
 	printf("Enter data: ");
 	scanf("%d", &data);
 	NODE newnode = createNode( data );
-	if( top == NULL ){
-		top = newnode;
-	}
+	if( top == NULL ) top = newnode;
 	else{
 		newnode -> next = top;
 		top = newnode;	

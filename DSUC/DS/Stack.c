@@ -1,17 +1,9 @@
 #include <stdio.h>
 #define MAX 100
-int top;
+int top = -1;
 int stack[MAX];
-int isFull(){
-	if( top == MAX-1 ) return 1;
-	else return 0;
-}
-int isEmpty(){
-	if( top == -1 ) return 1;
-	else return 0;
-}
 void push( int n ){
-	if( isFull() ) printf("Overflow!");
+	if( top==MAX-1 ) printf("Overflow!");
 	else{
 		top ++;
 		stack[top] = n;
@@ -19,7 +11,7 @@ void push( int n ){
 	}
 }
 void pop(){
-	if( isEmpty() ) printf("Underflow!");
+	if( top==-1 ) printf("Underflow!");
 	else{
 		int v = stack[top];
 		top --;
@@ -27,9 +19,10 @@ void pop(){
 	}
 }
 void display(){
-	if( isEmpty() ) printf("Underflow!");
+	if( top==-1 ) printf("Underflow!");
 	else{
 		int i;
+		printf("Stack: ");
 		for( i = top; i >= 0; i -- ){
 			printf("%d ", stack[i]);
 		}
@@ -40,8 +33,7 @@ int main(){
 	int ch;
 	int num;
 	while(1){
-		printf("Choose an operation: ");
-		fflush(stdin);
+		printf("--- MENU ---\n1. Push\n2. Pop\n3. Display\n4. Exit\nEnter choice: ");
 		scanf("%d", &ch);
 		switch(ch){
 			case 1: printf("Enter number: ");

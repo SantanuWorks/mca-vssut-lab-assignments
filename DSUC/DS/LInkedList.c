@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 typedef struct node* NODE;
-int count;
+int count = 0;
 
 struct node{
 	int data;
@@ -24,9 +24,7 @@ NODE createNode(){
 
 void insertAtBeg(){
 	printf("\n");
-	if( start == NULL ){
-		start = createNode();
-	}
+	if( start == NULL ) start = createNode();
 	else{
 		NODE newnode  = createNode();
 		newnode -> next = start;
@@ -39,14 +37,10 @@ void insertAtBeg(){
 void insertAtEnd(){
 	NODE temp = start;
 	printf("\n");
-	if( temp == NULL ){
-		temp = createNode();
-	}
+	if( temp == NULL ) temp = createNode();
 	else{
 		NODE newnode = createNode();
-		while( temp -> next != NULL ){
-			temp = temp -> next;
-		}
+		while( temp -> next != NULL ) temp = temp -> next;
 		temp -> next = newnode;
 	}
 	count ++;
@@ -55,14 +49,13 @@ void insertAtEnd(){
 
 void insertInBet(){
 	int n;
-	printf("\nEnter pos[1-%d]: ", count);
+	printf("\nEnter pos: ");
 	scanf("%d", &n);
 	if( start == NULL || n==1 ) insertAtBeg();
 	else if( n<1 || n>count ) printf("\nInvalid Position!\n\n");
 	else{
 		NODE newnode = createNode();
-		NODE prev = NULL;
-		NODE temp = start;
+		NODE prev = NULL, temp = start;
 		int in = 1;
 		while( in != n ){
 			prev = temp;
@@ -78,9 +71,7 @@ void insertInBet(){
 
 void deleteAtBeg(){
 	printf("\n");
-	if( start == NULL ){
-		printf("\nList is empty!\n\n");
-	}
+	if( start == NULL ) printf("\nList is empty!\n\n");
 	else{
 		NODE delnode = start;
 		start = start -> next;
@@ -91,12 +82,9 @@ void deleteAtBeg(){
 }
 
 void deleteAtEnd(){
-	NODE temp = start;
-	NODE prev = NULL;
+	NODE temp = start, prev = NULL;
 	printf("\n");
-	if( temp == NULL ){
-		printf("\nList is empty!\n\n");
-	}
+	if( temp == NULL ) printf("\nList is empty!\n\n");
 	else if( temp -> next == NULL ){
 		start = NULL;
 		count --;
@@ -115,22 +103,19 @@ void deleteAtEnd(){
 }
 
 void deleteInBet(){
-	int n;
-	printf("\nEnter pos[1-%d]: ", count);
+	int n, in = 1;
+	printf("\nEnter pos: ");
 	scanf("%d", &n);
 	if( start == NULL || n==1 ) deleteAtBeg();
 	else if( n<1 || n>count ) printf("\nInvalid Position!\n\n");
 	else if( n==count ) deleteAtEnd();
 	else{
-		NODE prev = NULL;
-		NODE temp = start;
-		int in = 1;
+		NODE prev = NULL, temp = start, delnode = temp;
 		while( in != n ){
 			prev = temp;
 			temp = temp -> next;
 			in ++;
 		}
-		NODE delnode = temp;
 		temp = temp -> next;
 		prev -> next = temp;
 		free(delnode);
@@ -140,10 +125,8 @@ void deleteInBet(){
 }
 
 void sortList(){
-	NODE curr;
-	NODE prev;
-	int i, j;
-	int flg = 0;
+	NODE curr, prev;
+	int i, j, flg = 0;
 	for( i = 0; i < count - 1; i ++ ){
 		flg = 0;
 		curr = start;
@@ -163,8 +146,7 @@ void sortList(){
 }
 
 void revList(){
-	NODE temp = NULL;
-	NODE next;
+	NODE temp = NULL, next;
 	while( start != NULL ){
 		next = start -> next;
 		start -> next = temp;
@@ -185,14 +167,8 @@ void traverse(){
 	printf("X\n\n");
 }
 
-void closeProg(){
-	printf("\nProgram ended!"); 
-	exit(0);
-}
-
 int main(){
 	int op;
-	count = 0;
 	while(1){
 		printf("1. Insert at beginning\n2. Insert in between\n3. Insert at end\n4. Delete at beginning\n5. Delete in between\n6. Delete at end\n7. Sort\n8. Reverse List\n9. Traverse\n10. Exit\nEnter operation: ");
 		scanf("%d", &op);
@@ -206,7 +182,7 @@ int main(){
 			case 7: sortList(); break;
 			case 8: revList(); break;
 			case 9: traverse(); break;
-			case 10: closeProg();
+			case 10: return 0;
 			default: printf("Invalid option!\n");
 		}
 	}

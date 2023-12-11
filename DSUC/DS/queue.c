@@ -45,7 +45,7 @@ int main(){
 		printf("--- MENU ---\n1. Insert\n2. Delete\n3. Display\n4. Exit\nEnter choice: ");
 		scanf("%d", &ch);
 		switch(ch){
-			case 1: printf("Enter a no: "); 
+			case 1: printf("Enter num : "); 
 					scanf("%d", &val);
 					enQueue(val);
 					break;
@@ -59,3 +59,4 @@ int main(){
 		}
 	}	
 }
+
