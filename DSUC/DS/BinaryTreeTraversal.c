@@ -43,11 +43,16 @@ void postorder(struct Node* root){
 }
 void main(){
 	struct Node* root = createNode(10);
+	printf("\tGiven Binary Tree:\n\n");
+	printf("\t\t10\n\t       /  \\\n");
+	printf("\t      20  30\n\t     /  \\   \\\n");
+	printf("\t    40  50  60\n");
 	insertLeft(root, 20);
 	insertRight(root, 30);
 	insertLeft(root->left, 40);
 	insertRight(root->left, 50);
-	printf("Inorder Traversal: ");
+	insertRight(root->right, 60);
+	printf("\nInorder Traversal: ");
 	inorder(root);
 	printf("\nPreorder Traversal: ");
 	preorder(root);
